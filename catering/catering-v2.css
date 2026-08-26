@@ -1,0 +1,187 @@
+/* v2.0 Catering-page production polish */
+.catering-intro {
+  padding: 72px 0 64px;
+  background:
+    radial-gradient(circle at 50% 120%, rgba(216,84,23,.13), transparent 42%),
+    #11100e;
+}
+
+.catering-intro-inner {
+  max-width: 940px;
+}
+
+.catering-intro .eyebrow {
+  margin-bottom: 16px;
+}
+
+.catering-intro h1 {
+  font-size: clamp(3rem, 6.4vw, 5.6rem);
+  line-height: .94;
+}
+
+.catering-lead {
+  max-width: 760px;
+  margin: 24px auto 0;
+  color: #e2d8c9;
+  font-family: system-ui, sans-serif;
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.catering-facts {
+  margin: 38px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 840px;
+  border-block: 1px solid var(--line);
+}
+
+.catering-facts > div {
+  padding: 20px 22px;
+  display: grid;
+  gap: 4px;
+}
+
+.catering-facts > div + div {
+  border-left: 1px solid var(--line);
+}
+
+.catering-facts strong {
+  color: var(--cream);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-size: .9rem;
+}
+
+.catering-facts span {
+  color: var(--muted);
+  font-family: system-ui, sans-serif;
+  font-size: .82rem;
+}
+
+.catering-heading {
+  margin-bottom: 54px;
+}
+
+.catering-heading .section-note {
+  margin-top: 18px;
+}
+
+.catering-offers {
+  padding-top: 82px;
+}
+
+.offer-row {
+  grid-template-columns: 1.06fr .94fr;
+  gap: 58px;
+  margin: 0 0 84px;
+}
+
+.catering-photo {
+  min-height: 410px;
+  height: 410px;
+  border: 1px solid rgba(241,223,192,.13);
+  box-shadow: 0 24px 55px rgba(0,0,0,.24);
+}
+
+.catering-photo .authentic-photo {
+  min-height: 0;
+  height: 100%;
+  object-fit: cover;
+}
+
+.offer-row:nth-of-type(2) .catering-photo .authentic-photo {
+  object-position: center 54%;
+}
+
+.offer-row:nth-of-type(3) .catering-photo .authentic-photo {
+  object-position: center 46%;
+}
+
+.offer-row:nth-of-type(4) .catering-photo .authentic-photo {
+  object-position: center 50%;
+}
+
+.offer-copy {
+  max-width: 540px;
+}
+
+.offer-copy h3 {
+  font-size: clamp(2.15rem, 3.5vw, 3.35rem);
+  line-height: 1.02;
+  margin-bottom: 20px;
+}
+
+.offer-copy > p:not(.eyebrow) {
+  color: #d7ccbb;
+  font-family: system-ui, sans-serif;
+  line-height: 1.72;
+  font-size: 1rem;
+}
+
+.offer-copy .button {
+  margin-top: 22px;
+}
+
+.catering-closing {
+  max-width: 820px;
+  margin: 8px auto 0;
+  padding: 46px 48px;
+  text-align: center;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 50% 110%, rgba(216,84,23,.12), transparent 54%),
+    rgba(255,255,255,.018);
+}
+
+.catering-closing h2 {
+  font-size: clamp(2.3rem, 4vw, 3.8rem);
+}
+
+.catering-closing > p:not(.eyebrow) {
+  max-width: 650px;
+  margin: 18px auto 24px;
+  color: var(--muted);
+  font-family: system-ui, sans-serif;
+  line-height: 1.65;
+}
+
+@media (max-width: 800px) {
+  .catering-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .catering-facts > div + div {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .offer-row {
+    gap: 28px;
+    margin-bottom: 62px;
+  }
+
+  .catering-photo {
+    height: 360px;
+    min-height: 360px;
+  }
+
+  .catering-closing {
+    padding: 38px 28px;
+  }
+}
+
+@media (max-width: 620px) {
+  .catering-intro {
+    padding-top: 56px;
+  }
+
+  .catering-photo {
+    height: 300px;
+    min-height: 300px;
+  }
+
+  .catering-offers {
+    padding-top: 64px;
+  }
+}
