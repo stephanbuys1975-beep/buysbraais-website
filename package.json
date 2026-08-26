@@ -1,0 +1,14 @@
+{
+  "name": "buysbraais-cloudflare-worker-preview",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node tools/build-pages.mjs",
+    "validate:pages": "npm run build && node tools/validate-pages.mjs",
+    "deploy:dry": "wrangler deploy --dry-run",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.126.0"
+  }
+}
