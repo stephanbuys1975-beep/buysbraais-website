@@ -4,15 +4,17 @@ import path from "node:path";
 const dist = path.join(process.cwd(), "dist");
 const required = [
   "index.html", "404.html", "about/index.html", "catering/index.html",
-  "gallery/index.html", "contact/index.html", "styles.css", "script.js",
-  "robots.txt", "sitemap.xml", "site.webmanifest",
+  "gallery/index.html", "gallery/gallery-v2.css", "contact/index.html",
+  "styles.css", "script.js", "robots.txt", "sitemap.xml", "site.webmanifest",
   "assets/photos/event-grill-burgers.jpeg", "assets/photos/event-guests-dining.jpeg"
 ];
 const forbidden = [
   /exact transcription/i,
   /capture(?:d)? visually/i,
   /higher-resolution editor capture/i,
-  /service description pending/i
+  /service description pending/i,
+  /migration preview/i,
+  /preview only/i
 ];
 const errors = [];
 
@@ -29,6 +31,20 @@ async function filesUnder(dir) {
     else output.push(full);
   }
   return output;
+}
+
+function hasValidImageSignature(file, bytes) {
+  const ext = path.extname(file).toLowerCase();
+  if (ext === ".jpg" || ext === ".jpeg") {
+    return bytes.length >= 3 && bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff;
+  }
+  if (ext === ".png") {
+    return bytes.length >= 8 && bytes.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]));
+  }
+  if (ext === ".webp") {
+    return bytes.length >= 12 && bytes.toString("ascii", 0, 4) === "RIFF" && bytes.toString("ascii", 8, 12) === "WEBP";
+  }
+  return true;
 }
 
 const files = await filesUnder(dist);
@@ -51,9 +67,19 @@ for (const file of htmlFiles) {
   }
 }
 
+const photoDir = path.join(dist, "assets", "photos");
+for (const file of files.filter((item) => item.startsWith(photoDir))) {
+  if (!/\.(?:jpe?g|png|webp)$/i.test(file)) continue;
+  const bytes = await readFile(file);
+  if (!hasValidImageSignature(file, bytes)) {
+    errors.push(`${path.relative(dist, file)} does not contain a valid ${path.extname(file).slice(1).toUpperCase()} image signature`);
+  }
+}
+
 console.log("BUYS BRAAI'S CLOUDFLARE PAGES VALIDATION");
 console.log(`Files checked: ${files.length}`);
 console.log(`HTML pages checked: ${htmlFiles.length}`);
+console.log(`Images signature-checked: ${files.filter((file) => file.startsWith(photoDir) && /\.(?:jpe?g|png|webp)$/i.test(file)).length}`);
 console.log(`Errors: ${errors.length}`);
 if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
