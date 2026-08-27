@@ -800,7 +800,7 @@ button, input, textarea { font: inherit; }
 .hero {
   background:
     linear-gradient(90deg, rgba(14,13,11,.93) 0%, rgba(14,13,11,.82) 45%, rgba(14,13,11,.42) 100%),
-    url('assets/photos/img-20260801-120700-hdr-cleaned.webp') center 48% / cover no-repeat;
+    url('assets/photos/img-20260801-120700-hdr-crisp.webp') center 48% / cover no-repeat;
 }
 .authentic-photo {
   width: 100%;
@@ -857,7 +857,7 @@ button, input, textarea { font: inherit; }
       rgba(14,13,11,.80) 38%,
       rgba(14,13,11,.48) 62%,
       rgba(14,13,11,.22) 100%),
-    url('assets/photos/img-20260801-120700-hdr-cleaned.webp') 62% 45% / cover no-repeat;
+    url('assets/photos/img-20260801-120700-hdr-crisp.webp') 62% 45% / cover no-repeat;
 }
 
 /* Two intentional headline lines rather than incidental wrapping. */
@@ -928,7 +928,7 @@ button, input, textarea { font: inherit; }
     min-height: 580px;
     background:
       linear-gradient(90deg, rgba(14,13,11,.92), rgba(14,13,11,.68)),
-      url('assets/photos/img-20260801-120700-hdr-cleaned.webp') 58% center / cover no-repeat;
+      url('assets/photos/img-20260801-120700-hdr-crisp.webp') 58% center / cover no-repeat;
   }
 
   .hero-mark-refined {
