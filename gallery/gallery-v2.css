@@ -12,6 +12,10 @@
   margin-bottom: 20px;
 }
 
+.gallery-live-heading h1 span {
+  color: var(--orange-hot);
+}
+
 .gallery-showcase-grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -27,6 +31,7 @@
   background: #171411;
   box-shadow: 0 16px 38px rgba(0, 0, 0, .18);
   aspect-ratio: 4 / 3;
+  position: relative;
 }
 
 .gallery-showcase-grid .gallery-live-tile.gallery-feature {
@@ -49,6 +54,53 @@
 .gallery-showcase-grid .gallery-live-tile:hover img {
   transform: scale(1.018);
   filter: brightness(1.035);
+}
+
+.gallery-showcase-grid figcaption {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 42px 20px 18px;
+  display: grid;
+  gap: 3px;
+  background: linear-gradient(transparent, rgba(10, 9, 8, .88));
+  color: var(--white);
+  pointer-events: none;
+}
+
+.gallery-showcase-grid figcaption span {
+  color: var(--orange-hot);
+  font-family: system-ui, sans-serif;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.gallery-showcase-grid figcaption strong {
+  font-family: "Roboto Slab", Georgia, serif;
+  font-size: 1rem;
+}
+
+.gallery-cta {
+  margin-top: 54px;
+  padding: 34px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  border: 1px solid rgba(241, 223, 192, .14);
+  border-left: 3px solid var(--orange-hot);
+  background: linear-gradient(120deg, rgba(240, 106, 33, .08), rgba(255, 255, 255, .015));
+}
+
+.gallery-cta h2 {
+  margin: 6px 0 0;
+  font-size: clamp(1.7rem, 3vw, 2.7rem);
+  text-transform: none;
+}
+
+.gallery-cta .button {
+  flex: 0 0 auto;
 }
 
 .gallery-showcase-grid .event-guests img { object-position: center 48%; }
@@ -76,6 +128,11 @@
     grid-column: 1 / -1;
     aspect-ratio: 16 / 9;
   }
+
+  .gallery-cta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 520px) {
@@ -97,5 +154,15 @@
   .gallery-showcase-grid .gallery-live-tile:first-child {
     grid-column: 1;
     aspect-ratio: 4 / 3;
+  }
+
+
+  .gallery-showcase-grid figcaption {
+    padding: 38px 16px 14px;
+  }
+
+  .gallery-cta {
+    margin-top: 38px;
+    padding: 26px 22px;
   }
 }

@@ -1,0 +1,132 @@
+/* Contact production polish: clear direct routes and a practical WhatsApp enquiry handoff. */
+.contact-live-intro {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(14, 13, 11, .97), rgba(14, 13, 11, .78)),
+    url('../assets/photos/img-20260801-121742-hdr-cleaned.webp') 76% 52% / cover no-repeat;
+}
+
+.contact-live-intro::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange-hot), transparent 55%);
+}
+
+.contact-live-intro .shell {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-live-intro h1 {
+  max-width: 760px;
+  padding: 0;
+  border: 0;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+}
+
+.contact-live-lead {
+  max-width: 720px;
+  color: var(--cream);
+  line-height: 1.7;
+}
+
+.enquiry-grid {
+  grid-template-columns: .8fr 1.2fr;
+  align-items: start;
+}
+
+.enquiry-form {
+  padding: 28px;
+  border: 1px solid rgba(241, 223, 192, .14);
+  background: rgba(255, 255, 255, .025);
+  box-shadow: 0 24px 54px rgba(0, 0, 0, .18);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.form-row-three {
+  grid-template-columns: .9fr 1.25fr .75fr;
+}
+
+.enquiry-form select {
+  width: 100%;
+  min-height: 49px;
+  border: 1px solid #cfc6b9;
+  border-radius: 2px;
+  background: #f1e9dd;
+  color: #211c17;
+  padding: 13px 40px 13px 16px;
+  outline: none;
+}
+
+.enquiry-form select:focus {
+  border-color: var(--orange-hot);
+  box-shadow: 0 0 0 3px rgba(240, 106, 33, .16);
+}
+
+.contact-direct {
+  margin-top: 34px;
+  border-top: 1px solid rgba(241, 223, 192, .14);
+}
+
+.contact-direct div {
+  padding: 15px 0;
+  display: grid;
+  gap: 4px;
+  border-bottom: 1px solid rgba(241, 223, 192, .10);
+}
+
+.contact-direct span {
+  color: var(--orange-hot);
+  font-family: system-ui, sans-serif;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.contact-direct a,
+.contact-direct strong {
+  color: var(--cream);
+  font-family: system-ui, sans-serif;
+  font-size: .95rem;
+}
+
+@media (max-width: 920px) {
+  .enquiry-grid {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+}
+
+@media (max-width: 620px) {
+  .contact-live-intro {
+    background:
+      linear-gradient(90deg, rgba(14, 13, 11, .96), rgba(14, 13, 11, .82)),
+      url('../assets/photos/img-20260801-121742-hdr-cleaned.webp') center / cover no-repeat;
+  }
+
+  .contact-live-intro h1 {
+    font-size: clamp(2.8rem, 15vw, 4.4rem);
+  }
+
+  .enquiry-form {
+    padding: 22px 18px;
+  }
+
+  .form-row,
+  .form-row-three {
+    grid-template-columns: 1fr;
+  }
+
+  .enquiry-form .button {
+    width: 100%;
+  }
+}

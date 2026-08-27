@@ -31,7 +31,15 @@ if (enquiryForm) {
     const name = String(formData.get('full_name') || '').trim();
     const telephone = String(formData.get('telephone') || '').trim();
     const email = String(formData.get('email') || '').trim();
+    const eventType = String(formData.get('event_type') || '').trim();
+    const eventDate = String(formData.get('event_date') || '').trim();
+    const location = String(formData.get('location') || '').trim();
+    const guestCount = String(formData.get('guest_count') || '').trim();
     const requirements = String(formData.get('event_requirements') || '').trim();
+
+    const dateForMessage = eventDate
+      ? new Intl.DateTimeFormat('en-GB', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(`${eventDate}T12:00:00Z`))
+      : 'Not confirmed';
 
     const message = [
       "Hi Oliver, I'd like a Buys Braai's catering quote.",
@@ -40,7 +48,12 @@ if (enquiryForm) {
       `Telephone: ${telephone}`,
       `Email: ${email}`,
       '',
-      'Event details:',
+      `Event type: ${eventType || 'Not specified'}`,
+      `Event date: ${dateForMessage}`,
+      `Location: ${location}`,
+      `Estimated guests: ${guestCount}`,
+      '',
+      'Food preferences and other details:',
       requirements
     ].join('\n');
 

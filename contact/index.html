@@ -11,6 +11,7 @@
   <link rel="apple-touch-icon" href="../assets/favicon-192.png">
   <link rel="manifest" href="../site.webmanifest">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="contact-v2.css">
   <script defer src="../script.js"></script>
 </head>
 <body>
@@ -53,8 +54,14 @@
       <div class="shell enquiry-grid">
         <div class="enquiry-copy">
           <p class="eyebrow">Event Enquiry</p>
-          <h2>Braai (BBQ) Feast Details</h2>
-          <p>Share your date, location, guest numbers and food preferences below. When you submit, WhatsApp will open with your enquiry already prepared for Oliver to review.</p>
+          <h2>Tell Us About Your Event</h2>
+          <p>Share the essentials and we’ll prepare a clear WhatsApp message for Oliver. You stay in control and review it before anything is sent.</p>
+
+          <div class="contact-direct" aria-label="Direct contact options">
+            <div><span>Call</span><a href="tel:+447741639494">07741 639494</a></div>
+            <div><span>Email</span><a href="mailto:oliver@buysbraais.com">oliver@buysbraais.com</a></div>
+            <div><span>Area</span><strong>Kent and surrounding areas</strong></div>
+          </div>
         </div>
 
         <form class="enquiry-form" data-enquiry-form>
@@ -63,24 +70,57 @@
             <input type="text" name="website" tabindex="-1" autocomplete="off">
           </label>
 
-          <label>
-            <span>Full Name*</span>
-            <input type="text" name="full_name" placeholder="Your full name" autocomplete="name" required>
-          </label>
+          <div class="form-row">
+            <label>
+              <span>Full Name*</span>
+              <input type="text" name="full_name" placeholder="Your full name" autocomplete="name" required>
+            </label>
+
+            <label>
+              <span>Telephone Number*</span>
+              <input type="tel" name="telephone" placeholder="07700 900000" autocomplete="tel" required>
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label>
+              <span>Email Address*</span>
+              <input type="email" name="email" placeholder="name@example.com" autocomplete="email" required>
+            </label>
+
+            <label>
+              <span>Event Type</span>
+              <select name="event_type">
+                <option value="">Choose an event type</option>
+                <option>Private party or birthday</option>
+                <option>Wedding or celebration</option>
+                <option>Corporate event</option>
+                <option>Festival, market or public event</option>
+                <option>Something else</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="form-row form-row-three">
+            <label>
+              <span>Event Date</span>
+              <input type="date" name="event_date">
+            </label>
+
+            <label>
+              <span>Location / Postcode*</span>
+              <input type="text" name="location" placeholder="Town or postcode" autocomplete="postal-code" required>
+            </label>
+
+            <label>
+              <span>Estimated Guests*</span>
+              <input type="number" name="guest_count" min="1" inputmode="numeric" placeholder="e.g. 40" required>
+            </label>
+          </div>
 
           <label>
-            <span>Telephone Number*</span>
-            <input type="tel" name="telephone" placeholder="07700 900000" autocomplete="tel" required>
-          </label>
-
-          <label>
-            <span>Email Address*</span>
-            <input type="email" name="email" placeholder="name@example.com" autocomplete="email" required>
-          </label>
-
-          <label>
-            <span>Event Requirements*</span>
-            <textarea name="event_requirements" rows="5" placeholder="Tell us your event date, location, estimated guest count, event type, and food requirements." required></textarea>
+            <span>Food Preferences &amp; Other Details*</span>
+            <textarea name="event_requirements" rows="5" placeholder="Tell us what you have in mind, including any dietary requirements or serving preferences." required></textarea>
           </label>
 
           <button class="button button-whatsapp" type="submit">Send Enquiry via WhatsApp</button>
