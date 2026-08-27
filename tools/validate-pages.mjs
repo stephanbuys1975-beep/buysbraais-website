@@ -6,6 +6,7 @@ const required = [
   "index.html", "404.html", "about/index.html", "catering/index.html",
   "gallery/index.html", "gallery/gallery-v2.css", "contact/index.html",
   "styles.css", "script.js", "robots.txt", "sitemap.xml", "site.webmanifest",
+  "assets/buys-braais-social.jpg",
   "assets/photos/event-grill-burgers.jpeg", "assets/photos/event-guests-dining.jpeg"
 ];
 const forbidden = [
@@ -49,10 +50,31 @@ function hasValidImageSignature(file, bytes) {
 
 const files = await filesUnder(dist);
 const htmlFiles = files.filter((file) => file.endsWith(".html"));
+const publicPages = new Map([
+  ["index.html", "https://buysbraais.com/"],
+  ["about/index.html", "https://buysbraais.com/about/"],
+  ["catering/index.html", "https://buysbraais.com/catering/"],
+  ["gallery/index.html", "https://buysbraais.com/gallery/"],
+  ["contact/index.html", "https://buysbraais.com/contact/"]
+]);
 for (const file of htmlFiles) {
   const html = await readFile(file, "utf8");
+  const relative = path.relative(dist, file);
   for (const pattern of forbidden) {
-    if (pattern.test(html)) errors.push(`${path.relative(dist, file)} contains ${pattern}`);
+    if (pattern.test(html)) errors.push(`${relative} contains ${pattern}`);
+  }
+  const canonical = publicPages.get(relative);
+  if (canonical) {
+    const requiredMetadata = [
+      `<link rel="canonical" href="${canonical}">`,
+      `<meta property="og:url" content="${canonical}">`,
+      '<meta property="og:image" content="https://buysbraais.com/assets/buys-braais-social.jpg">',
+      '<meta name="twitter:card" content="summary_large_image">',
+      '<meta name="twitter:image" content="https://buysbraais.com/assets/buys-braais-social.jpg">'
+    ];
+    for (const metadata of requiredMetadata) {
+      if (!html.includes(metadata)) errors.push(`${relative} is missing required metadata: ${metadata}`);
+    }
   }
   for (const match of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
     const ref = match[1];
@@ -63,7 +85,7 @@ for (const file of htmlFiles) {
       ? path.join(dist, clean.slice(1))
       : path.resolve(path.dirname(file), clean);
     try { await access(target); }
-    catch { errors.push(`${path.relative(dist, file)} has missing local reference: ${ref}`); }
+    catch { errors.push(`${relative} has missing local reference: ${ref}`); }
   }
 }
 
