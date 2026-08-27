@@ -19,6 +19,52 @@ if (toggle && nav) {
 const year = document.querySelector('[data-year]');
 if (year) year.textContent = new Date().getFullYear();
 
+const smokeLayer = document.querySelector('.hero-smoke');
+if (smokeLayer) {
+  const wisps = [...smokeLayer.querySelectorAll('.hero-smoke-wisp')];
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const timings = [
+    { duration: 8200, phase: 0, drift: 5, peak: .72 },
+    { duration: 9800, phase: .36, drift: -4, peak: .62 },
+    { duration: 11600, phase: .68, drift: 7, peak: .58 }
+  ];
+  let smokeFrame = 0;
+
+  const renderSmoke = (time) => {
+    wisps.forEach((wisp, index) => {
+      const timing = timings[index];
+      const progress = ((time / timing.duration) + timing.phase) % 1;
+      const fade = Math.pow(Math.sin(Math.PI * progress), 1.35);
+      const horizontal = -7 + (18 * progress) + (Math.sin(progress * Math.PI * 2) * timing.drift);
+      const vertical = 18 - (58 * progress);
+      const scale = .72 + (.52 * progress);
+      const rotation = -8 + (16 * progress);
+
+      wisp.style.opacity = String(fade * timing.peak);
+      wisp.style.transform = `translate3d(${horizontal}%, ${vertical}%, 0) scale(${scale}) rotate(${rotation}deg)`;
+    });
+
+    smokeFrame = window.requestAnimationFrame(renderSmoke);
+  };
+
+  const updateSmokeMotion = () => {
+    window.cancelAnimationFrame(smokeFrame);
+    smokeFrame = 0;
+
+    if (reducedMotion.matches) {
+      smokeLayer.classList.remove('is-scripted');
+      wisps.forEach((wisp) => wisp.removeAttribute('style'));
+      return;
+    }
+
+    smokeLayer.classList.add('is-scripted');
+    smokeFrame = window.requestAnimationFrame(renderSmoke);
+  };
+
+  updateSmokeMotion();
+  reducedMotion.addEventListener('change', updateSmokeMotion);
+}
+
 const enquiryForm = document.querySelector('[data-enquiry-form]');
 if (enquiryForm) {
   enquiryForm.addEventListener('submit', (event) => {

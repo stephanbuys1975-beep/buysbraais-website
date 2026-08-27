@@ -74,14 +74,6 @@ button, input, textarea { font: inherit; }
     radial-gradient(circle at 80% 70%, rgba(240,106,33,.15), transparent 15%),
     linear-gradient(110deg, #0e0d0b 0%, #15120f 56%, #251912 100%);
 }
-.hero::before {
-  content: ""; position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
-  background-size: 36px 36px;
-  mask-image: linear-gradient(to bottom, black, transparent 90%);
-}
 .hero-embers {
   position: absolute; width: 620px; height: 620px; right: -140px; bottom: -230px;
   border-radius: 50%;
@@ -94,7 +86,7 @@ button, input, textarea { font: inherit; }
   inset: -10% -6%;
   overflow: hidden;
   pointer-events: none;
-  opacity: .56;
+  opacity: .72;
   mask-image: linear-gradient(90deg, rgba(0,0,0,.18), rgba(0,0,0,.72) 36%, #000 58%);
 }
 .hero-smoke-wisp {
@@ -112,7 +104,7 @@ button, input, textarea { font: inherit; }
   opacity: 0;
   transform-origin: 50% 88%;
   will-change: transform, opacity;
-  animation: hero-smoke-rise 14s ease-in-out infinite;
+  animation: hero-smoke-rise 9s ease-in-out infinite;
 }
 .hero-smoke-wisp-one {
   left: 29%;
@@ -121,23 +113,26 @@ button, input, textarea { font: inherit; }
 .hero-smoke-wisp-two {
   left: 51%;
   width: clamp(210px, 27vw, 470px);
-  animation-duration: 17s;
-  animation-delay: -9s;
+  animation-duration: 11s;
+  animation-delay: -5s;
 }
 .hero-smoke-wisp-three {
   right: -1%;
   width: clamp(280px, 35vw, 620px);
-  animation-duration: 20s;
-  animation-delay: -14s;
+  animation-duration: 13s;
+  animation-delay: -8s;
+}
+.hero-smoke.is-scripted .hero-smoke-wisp {
+  animation: none;
 }
 @keyframes hero-smoke-rise {
   0% {
     opacity: 0;
     transform: translate3d(-5%, 15%, 0) scale(.72) rotate(-9deg);
   }
-  18% { opacity: .26; }
-  46% { opacity: .48; }
-  76% { opacity: .18; }
+  18% { opacity: .36; }
+  46% { opacity: .64; }
+  76% { opacity: .28; }
   100% {
     opacity: 0;
     transform: translate3d(15%, -35%, 0) scale(1.22) rotate(9deg);
