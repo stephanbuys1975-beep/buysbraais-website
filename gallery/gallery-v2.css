@@ -103,6 +103,31 @@
   flex: 0 0 auto;
 }
 
+.gallery-story {
+  margin-top: 58px;
+  padding: 36px 0 6px;
+  display: grid;
+  grid-template-columns: .82fr 1.18fr;
+  gap: clamp(32px, 6vw, 80px);
+  border-top: 1px solid rgba(241, 223, 192, .14);
+}
+
+.gallery-story h2 {
+  margin: 8px 0 0;
+  font-size: clamp(1.9rem, 3.5vw, 3rem);
+  text-transform: none;
+}
+
+.gallery-story-copy {
+  color: var(--muted);
+  font-family: system-ui, sans-serif;
+  line-height: 1.72;
+}
+
+.gallery-story-copy p + p {
+  margin-top: 18px;
+}
+
 .gallery-showcase-grid .event-spread img { object-position: center 58%; }
 .gallery-showcase-grid .sausages-grill img { object-position: center 50%; }
 .gallery-showcase-grid .brisket-prep img { object-position: center 48%; }
@@ -132,6 +157,10 @@
   .gallery-cta {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .gallery-story {
+    grid-template-columns: 1fr;
   }
 }
 
