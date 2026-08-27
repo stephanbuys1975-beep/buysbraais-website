@@ -19,13 +19,32 @@ if (toggle && nav) {
 const year = document.querySelector('[data-year]');
 if (year) year.textContent = new Date().getFullYear();
 
-const previewForm = document.querySelector('[data-preview-form]');
-if (previewForm) {
-  previewForm.addEventListener('submit', (event) => {
+const enquiryForm = document.querySelector('[data-enquiry-form]');
+if (enquiryForm) {
+  enquiryForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    const note = document.querySelector('[data-form-note]');
-    if (note) {
-      note.textContent = 'Preview only — enquiry delivery is not connected yet.';
-    }
+
+    const formData = new FormData(enquiryForm);
+    const website = String(formData.get('website') || '').trim();
+    if (website) return;
+
+    const name = String(formData.get('full_name') || '').trim();
+    const telephone = String(formData.get('telephone') || '').trim();
+    const email = String(formData.get('email') || '').trim();
+    const requirements = String(formData.get('event_requirements') || '').trim();
+
+    const message = [
+      "Hi Oliver, I'd like a Buys Braai's catering quote.",
+      '',
+      `Name: ${name}`,
+      `Telephone: ${telephone}`,
+      `Email: ${email}`,
+      '',
+      'Event details:',
+      requirements
+    ].join('\n');
+
+    const whatsappUrl = `https://wa.me/447741639494?text=${encodeURIComponent(message)}`;
+    window.location.href = whatsappUrl;
   });
 }
