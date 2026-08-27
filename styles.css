@@ -88,6 +88,61 @@ button, input, textarea { font: inherit; }
   background: radial-gradient(circle, rgba(240,106,33,.42), rgba(216,84,23,.05) 45%, transparent 70%);
   filter: blur(10px);
 }
+.hero-smoke {
+  position: absolute;
+  z-index: 0;
+  inset: -10% -6%;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: .56;
+  mask-image: linear-gradient(90deg, rgba(0,0,0,.18), rgba(0,0,0,.72) 36%, #000 58%);
+}
+.hero-smoke-wisp {
+  position: absolute;
+  bottom: -34%;
+  width: clamp(250px, 32vw, 560px);
+  height: clamp(430px, 58vw, 820px);
+  border-radius: 48% 52% 46% 54%;
+  background:
+    radial-gradient(ellipse at 50% 76%, rgba(238,230,211,.28) 0 8%, rgba(226,218,200,.13) 18%, transparent 45%),
+    radial-gradient(ellipse at 43% 52%, rgba(232,226,211,.22) 0 9%, rgba(218,211,197,.09) 24%, transparent 52%),
+    radial-gradient(ellipse at 58% 29%, rgba(235,229,215,.16) 0 8%, rgba(218,212,198,.06) 25%, transparent 51%);
+  filter: blur(25px);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform-origin: 50% 88%;
+  will-change: transform, opacity;
+  animation: hero-smoke-rise 14s ease-in-out infinite;
+}
+.hero-smoke-wisp-one {
+  left: 29%;
+  animation-delay: -2s;
+}
+.hero-smoke-wisp-two {
+  left: 51%;
+  width: clamp(210px, 27vw, 470px);
+  animation-duration: 17s;
+  animation-delay: -9s;
+}
+.hero-smoke-wisp-three {
+  right: -1%;
+  width: clamp(280px, 35vw, 620px);
+  animation-duration: 20s;
+  animation-delay: -14s;
+}
+@keyframes hero-smoke-rise {
+  0% {
+    opacity: 0;
+    transform: translate3d(-5%, 15%, 0) scale(.72) rotate(-9deg);
+  }
+  18% { opacity: .26; }
+  46% { opacity: .48; }
+  76% { opacity: .18; }
+  100% {
+    opacity: 0;
+    transform: translate3d(15%, -35%, 0) scale(1.22) rotate(9deg);
+  }
+}
 .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 54px; }
 .eyebrow { margin: 0 0 14px; color: var(--orange-hot); text-transform: uppercase; letter-spacing: .14em; font-size: .8rem; font-weight: 700; }
 .hero h1, h2 {
@@ -930,6 +985,15 @@ button, input, textarea { font: inherit; }
       linear-gradient(90deg, rgba(14,13,11,.92), rgba(14,13,11,.68)),
       url('assets/photos/img-20260801-120700-hdr-crisp.webp') 58% center / cover no-repeat;
   }
+
+  .hero-smoke {
+    inset: -6% -18%;
+    opacity: .42;
+    mask-image: linear-gradient(90deg, rgba(0,0,0,.1), #000 54%);
+  }
+
+  .hero-smoke-wisp-one { left: 18%; }
+  .hero-smoke-wisp-two { left: 45%; }
 
   .hero-mark-refined {
     width: 250px;
