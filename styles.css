@@ -899,6 +899,7 @@ button, input, textarea { font: inherit; }
 
 .about-live-copy {
   max-width: 610px;
+  min-width: 0;
 }
 
 .about-live-copy h1 {
@@ -914,7 +915,8 @@ button, input, textarea { font: inherit; }
 
 .about-heading-accent {
   color: var(--orange-hot);
-  white-space: nowrap;
+  white-space: normal;
+  text-wrap: balance;
 }
 
 .about-heading-light {

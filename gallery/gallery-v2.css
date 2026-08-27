@@ -103,14 +103,14 @@
   flex: 0 0 auto;
 }
 
-.gallery-showcase-grid .event-guests img { object-position: center 48%; }
-.gallery-showcase-grid .event-grill img { object-position: center 50%; }
+.gallery-showcase-grid .event-spread img { object-position: center 58%; }
+.gallery-showcase-grid .boerewors-grill img { object-position: center 50%; }
 .gallery-showcase-grid .brisket-prep img { object-position: center 48%; }
 .gallery-showcase-grid .brisket-ready img { object-position: center 50%; }
 .gallery-showcase-grid .smoker-cook img { object-position: center 48%; }
-.gallery-showcase-grid .smoker-setup img { object-position: center 52%; }
+.gallery-showcase-grid .serving-table img { object-position: center 48%; }
 .gallery-showcase-grid .brisket-rest img { object-position: center 50%; }
-.gallery-showcase-grid .smoker-detail img { object-position: center 50%; }
+.gallery-showcase-grid .chicken-grill img { object-position: center 54%; }
 
 @media (max-width: 820px) {
   .gallery-showcase-grid {
